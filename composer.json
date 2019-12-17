@@ -1,9 +1,9 @@
 {
-  "name": "valsplat/simplicate-php-client",
+  "name": "valsplat/simplicate-api-client",
   "type": "library",
   "description": "A PHP Client for the Simplicate V2 API",
   "keywords": [ "api", "php", "simplicate", "guzzle" ],
-  "homepage": "https://github.com/valsplat/simplicate-php-client",
+  "homepage": "https://github.com/valsplat/simplicate-api-client",
   "license": "MIT",
   "authors": [
     {
