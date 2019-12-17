@@ -6,15 +6,15 @@
 ## Contributing
 
 ```
-$ git clone git@github.com:valsplat/simplicate-php-client.git
-$ cd simplicate-php-client
+$ git clone git@github.com:valsplat/simplicate-api-client.git
+$ cd simplicate-api-client
 $ composer update -o
 ```
 
 ## Installation
 
 ```
-$ composer require valsplat/simplicate-php-client
+$ composer require valsplat/simplicate-api-client
 ```
 
 ## Endpoints
