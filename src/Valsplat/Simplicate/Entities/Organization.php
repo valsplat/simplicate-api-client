@@ -39,7 +39,6 @@ class Organization extends Entity
         'bank_account',
         'bank_bic',
         'relation_number'
-
     ];
 
     protected $endpoint = 'crm/organization/';

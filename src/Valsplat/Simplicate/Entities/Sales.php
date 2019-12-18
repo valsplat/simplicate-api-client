@@ -13,10 +13,7 @@ class Sales extends Entity
     use Actions\Deletable;
 
     protected $fillable = [
-        'id',
         'responsible_employee',
-        'person',
-        'organization',
         'progress',
         'source',
         'status',
