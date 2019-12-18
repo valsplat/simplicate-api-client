@@ -29,7 +29,6 @@ class ProjectService extends Entity
         'budget_financial_hours',
         'write_hours_start_date',
         'write_hours_end_date',
-        'id',
         'start_date',
         'end_date',
         'subscription_cycle',

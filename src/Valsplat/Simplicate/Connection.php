@@ -112,7 +112,7 @@ class Connection
         // Add default json headers to the request
         $headers = array_merge($headers, [
             'Accept' => 'application/json',
-            'Content-Type' => 'application/x-www-form-urlencoded',
+            'Content-Type' => 'application/json',
             'Authentication-Key' => $this->getAccountKey(),
             'Authentication-Secret' => $this->getAccountSecret(),
             'User-Agent' => 'vasplat/simplicate-php-client',
@@ -214,6 +214,24 @@ class Connection
     {
         try {
             $request = $this->createRequest('PATCH', $this->formatUrl($url, 'patch'), $body);
+            $response = $this->client()->send($request);
+
+            return $this->parseResponse($response);
+        } catch (Exception $e) {
+            $this->parseExceptionForErrorMessages($e);
+        }
+    }
+
+    /**
+     * @param $url
+     * @param $body
+     * @return mixed
+     * @throws ApiException
+     */
+    public function put($url, $body)
+    {
+        try {
+            $request = $this->createRequest('PUT', $this->formatUrl($url, 'put'), $body);
             $response = $this->client()->send($request);
 
             return $this->parseResponse($response);

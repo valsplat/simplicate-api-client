@@ -89,9 +89,19 @@ abstract class Entity
      */
     public function fillables()
     {
-        return array_filter($this->attributes, function ($attribute) {
+        $out = array_filter($this->attributes, function ($attribute) {
             return $this->isFillable($attribute);
         }, ARRAY_FILTER_USE_KEY);
+
+        if (isset($out['custom_fields'])) {
+            $out['custom_fields'] = array_filter($out['custom_fields'], function ($customField) {
+                return isset($customField['value']);
+            });
+            sort($out['custom_fields']);
+        }
+
+        print_r($out);
+        return $out;
     }
 
     /**

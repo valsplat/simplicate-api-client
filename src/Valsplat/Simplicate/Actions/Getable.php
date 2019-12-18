@@ -12,6 +12,6 @@ trait Getable
     public function get($id)
     {
         $result = $this->connection()->get($this->getEndpoint() . urlencode($id));
-        return $this->makeFromResponse($result);
+        return $this->makeFromResponse($result['data']);
     }
 }

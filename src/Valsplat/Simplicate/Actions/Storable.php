@@ -22,8 +22,8 @@ trait Storable
      */
     public function create()
     {
-        $result = $this->connection()->post($this->getEndpoint(), http_build_query($this->attributes()));
-        return $this->selfFromResponse($result);
+        $result = $this->connection()->post($this->getEndpoint(), json_encode($this->fillables()));
+        return $this->selfFromResponse($result[$this->getNamespace()]);
     }
 
     /**
@@ -31,7 +31,7 @@ trait Storable
      */
     public function update()
     {
-        $result = $this->connection()->patch($this->getEndpoint() . urlencode($this->id), http_build_query($this->fillables()));
-        return $this->selfFromResponse($result);
+        $result = $this->connection()->put($this->getEndpoint() . urlencode($this->id), json_encode($this->fillables()));
+        return $this->selfFromResponse($result[$this->getNamespace()]);
     }
 }
