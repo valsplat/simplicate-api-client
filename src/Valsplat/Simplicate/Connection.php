@@ -6,6 +6,7 @@ use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Promise;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7;
@@ -47,6 +48,12 @@ class Connection
      * @var object
      */
     private $client;
+
+    /**
+     * @var int
+     */
+    private $maxResultsPerRequest = 100;
+    private $maxConcurrentRequests = 40;
 
     /**
      * @return Client
@@ -120,7 +127,7 @@ class Connection
     }
 
     /**
-     * @param $url
+     * @param string $url
      * @param array $params
      * @return mixed
      * @throws ApiException
@@ -132,6 +139,48 @@ class Connection
             $response = $this->client()->send($request);
 
             return $this->parseResponse($response);
+        } catch (Exception $e) {
+            $this->parseExceptionForErrorMessages($e);
+        }
+    }
+
+    /**
+     * @param string $url
+     * @param int $totalCount
+     * @param array $params
+     * @return mixed
+     * @throws ApiException
+     */
+    public function getConcurrent($url, $totalCount, array $params = [])
+    {
+
+        try {
+            $out = [];
+
+            $numRequestsNeeded = ceil(($totalCount-$this->maxResultsPerRequest)/$this->maxResultsPerRequest);
+
+            for ($batch = 0; $batch <= $numRequestsNeeded; $batch += $this->maxConcurrentRequests) {
+
+                $promises = [];
+                for ($params['offset']; $params['offset'] <= $totalCount; $params['offset'] += $this->maxResultsPerRequest) {
+                    $request = $this->createRequest('GET', $this->formatUrl($url, 'get'), null, $params);
+                    $promises[$params['offset']] = $this->client()->sendAsync($request);
+                    if (count($promises) == $this->maxConcurrentRequests || $params['offset'] > $totalCount) {
+                        break;
+                    }
+                }
+
+                // Wait for the requests to complete, even if some of them fail
+                $responses = Promise\settle($promises)->wait();
+                foreach ($responses as $offset => $response) {
+                    $out[$offset] = $this->parseResponse($response['value']);
+                }
+
+            }
+
+            ksort($out);
+            return $out;
+
         } catch (Exception $e) {
             $this->parseExceptionForErrorMessages($e);
         }
@@ -231,8 +280,8 @@ class Connection
     {
         try {
             Psr7\rewind_body($response);
-            $json = json_decode($response->getBody()->getContents(), true);
 
+            $json = json_decode($response->getBody()->getContents(), true);
             return $json;
         } catch (\RuntimeException $e) {
             throw new ApiException($e->getMessage());
