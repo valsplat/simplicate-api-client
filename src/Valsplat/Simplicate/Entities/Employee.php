@@ -13,7 +13,6 @@ class Employee extends Entity
     // use Actions\Deletable;
 
     protected $fillable = [
-        'id',
         'person_id',
         'name',
         'marital_status',

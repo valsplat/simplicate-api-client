@@ -23,6 +23,16 @@ class Simplicate
         return new Entities\Employee($this->connection, $attributes);
     }
 
+    public function leave($attributes = [])
+    {
+        return new Entities\Leave($this->connection, $attributes);
+    }
+
+    public function myorganizationprofile($attributes = [])
+    {
+        return new Entities\Entities\MyOrganizationProfile($this->connection, $attributes);
+    }
+
     public function organization($attributes = [])
     {
         return new Entities\Organization($this->connection, $attributes);
