@@ -14,7 +14,9 @@ trait Listable
         return $this->collectionFromResult($result);
     }
 
-
+    /**
+     * @return mixed
+     */
     public function listAll($params = [])
     {
         $params['metadata'] = 'offset,count';

@@ -14,7 +14,7 @@ class Project extends Entity
 
     protected $fillable = [
         'id',
-        'project_manager',
+        'project_manager_id',
         'project_status',
         'hours_rate_type',
         'abnormal_address',
