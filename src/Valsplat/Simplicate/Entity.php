@@ -99,8 +99,6 @@ abstract class Entity
             });
             sort($out['custom_fields']);
         }
-
-        print_r($out);
         return $out;
     }
 

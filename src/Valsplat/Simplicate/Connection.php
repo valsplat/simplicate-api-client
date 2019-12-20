@@ -137,7 +137,6 @@ class Connection
         try {
             $request = $this->createRequest('GET', $this->formatUrl($url, 'get'), null, $params);
             $response = $this->client()->send($request);
-
             return $this->parseResponse($response);
         } catch (Exception $e) {
             $this->parseExceptionForErrorMessages($e);
