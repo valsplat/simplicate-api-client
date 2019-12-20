@@ -17,13 +17,13 @@ trait Listable
 
     public function listAll($params = [])
     {
-        $params['metadata'] = 'offset,count,total_count';
+        $params['metadata'] = 'offset,count';
         $result = $this->connection()->get($this->getEndpoint(), $params);
         $otherResults = [];
 
-        if ($result['metadata']['total_count'] > count($result['data'])) {
+        if ($result['metadata']['count'] > count($result['data'])) {
             $params['offset'] = $result['metadata']['offset'] + count($result['data']);
-            $otherResults = $this->connection()->getConcurrent($this->getEndpoint(), $result['metadata']['total_count'], $params);
+            $otherResults = $this->connection()->getConcurrent($this->getEndpoint(), $result['metadata']['count'], $params);
         }
 
         foreach($otherResults as $r) {
