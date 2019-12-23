@@ -14,6 +14,7 @@ class ProjectService extends Entity
 
     protected $fillable = [
         'project_id',
+        'service_number',
         'related_service_id',
         'expected_invoice_date',
         'invoice_date',
@@ -35,7 +36,7 @@ class ProjectService extends Entity
         'budget',
         'default_service_id',
         'name',
-        'invoice_method',
+        'invoice_method', // ['Hours','Subscription','Fixed']
         'amount',
         'price',
         'track_hours',

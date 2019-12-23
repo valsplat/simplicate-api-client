@@ -24,7 +24,7 @@ class SalesService extends Entity
         'sales_id',
         'default_service_id',
         'name',
-        'invoice_method',
+        'invoice_method', // ['Hours','Subscription','Fixed']
         'amount',
         'price',
         'track_hours'
