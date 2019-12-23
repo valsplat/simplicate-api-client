@@ -20,6 +20,11 @@ abstract class Entity
     protected $fillable = [ ];
 
     /**
+     * @var array Attributes that should not be set on update
+     */
+    protected $notFillableOnUpdate = [ ];
+
+    /**
      * @var string The URL endpoint of this model
      */
     protected $endpoint = '';
@@ -84,13 +89,13 @@ abstract class Entity
 
     /**
      * Get the model's fillable attributes
-     *
+     * @param boolean $forUpdate
      * @return array
      */
-    public function fillables()
+    public function fillables($forUpdate = false)
     {
-        $out = array_filter($this->attributes, function ($attribute) {
-            return $this->isFillable($attribute);
+        $out = array_filter($this->attributes, function ($attribute) use ($forUpdate) {
+            return $this->isFillable($attribute, $forUpdate);
         }, ARRAY_FILTER_USE_KEY);
 
         if (isset($out['custom_fields'])) {
@@ -118,9 +123,13 @@ abstract class Entity
      * @param $key
      * @return bool
      */
-    protected function isFillable($key)
+    protected function isFillable($key, $forUpdate = false)
     {
-        return in_array($key, $this->fillable);
+        $isFillable = in_array($key, $this->fillable);
+        if ($isFillable && $forUpdate) {
+            $isFillable = !in_array($key, $this->notFillableOnUpdate);
+        }
+        return $isFillable;
     }
 
     /**

@@ -31,7 +31,7 @@ trait Storable
      */
     public function update()
     {
-        $result = $this->connection()->put($this->getEndpoint() . urlencode($this->id), json_encode($this->fillables()));
+        $result = $this->connection()->put($this->getEndpoint() . urlencode($this->id), json_encode($this->fillables(true)));
         return $this->selfFromResponse($result[$this->getNamespace()]);
     }
 }

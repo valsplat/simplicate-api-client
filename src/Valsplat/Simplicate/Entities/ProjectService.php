@@ -43,6 +43,10 @@ class ProjectService extends Entity
         'track_cost'
     ];
 
+    protected $notFillableOnUpdate = [
+        'project_id',
+    ];
+
     protected $endpoint = 'projects/service/';
     // protected $namespace = '';
 }
