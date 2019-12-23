@@ -23,6 +23,11 @@ class Simplicate
         return new Entities\Employee($this->connection, $attributes);
     }
 
+    public function hourstype($attributes = [])
+    {
+        return new Entities\HoursType($this->connection, $attributes);
+    }
+
     public function leave($attributes = [])
     {
         return new Entities\Leave($this->connection, $attributes);
