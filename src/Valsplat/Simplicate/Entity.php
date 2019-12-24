@@ -191,9 +191,7 @@ abstract class Entity
      */
     public function makeFromResponse($response)
     {
-        $entity = new static($this->connection);
-        $entity->selfFromResponse($response);
-
+        $entity = new static($this->connection, $response);
         return $entity;
     }
 

@@ -2,6 +2,7 @@
 
 namespace Valsplat\Simplicate\Entities;
 
+use Valsplat\Simplicate\Connection;
 use Valsplat\Simplicate\Actions;
 use Valsplat\Simplicate\Entity;
 
@@ -49,4 +50,14 @@ class ProjectService extends Entity
 
     protected $endpoint = 'projects/service/';
     // protected $namespace = '';
+
+
+    public function __construct(Connection $connection, array $attributes = [ ])
+    {
+        if (isset($attributes['service_number']) && preg_match('/^[0-9]*\.[0-9]*$/', $attributes['service_number'])) {
+            $attributes['service_number'] = (int) preg_replace('/^([0-9]*\.)/', '', $attributes['service_number']);
+        }
+
+        return parent::__construct($connection, $attributes);
+    }
 }
