@@ -37,7 +37,7 @@ class ProjectService extends Entity
         'budget',
         'default_service_id',
         'name',
-        'invoice_method', // ['Hours','Subscription','Fixed']
+        'invoice_method', // ['Hours','Subscription','FixedFee']
         'amount',
         'price',
         'track_hours',
