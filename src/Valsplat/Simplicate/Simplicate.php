@@ -28,6 +28,11 @@ class Simplicate
         return new Entities\HoursType($this->connection, $attributes);
     }
 
+    public function invoice($attributes = [])
+    {
+        return new Entities\Invoice($this->connection, $attributes);
+    }
+
     public function leave($attributes = [])
     {
         return new Entities\Leave($this->connection, $attributes);
