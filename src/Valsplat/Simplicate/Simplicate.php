@@ -18,6 +18,11 @@ class Simplicate
         return new Entities\Contactperson($this->connection, $attributes);
     }
 
+    public function defaultservice($attributes = [])
+    {
+        return new Entities\DefaultService($this->connection, $attributes);
+    }
+
     public function employee($attributes = [])
     {
         return new Entities\Employee($this->connection, $attributes);
@@ -40,7 +45,7 @@ class Simplicate
 
     public function myorganizationprofile($attributes = [])
     {
-        return new Entities\Entities\MyOrganizationProfile($this->connection, $attributes);
+        return new Entities\MyOrganizationProfile($this->connection, $attributes);
     }
 
     public function organization($attributes = [])
@@ -58,17 +63,12 @@ class Simplicate
         return new Entities\Project($this->connection, $attributes);
     }
 
-    public function projectService($attributes = [])
-    {
-        return new Entities\ProjectService($this->connection, $attributes);
-    }
-
     public function sales($attributes = [])
     {
         return new Entities\Sales($this->connection, $attributes);
     }
 
-    public function salesService($attributes = [])
+    public function salesservice($attributes = [])
     {
         return new Entities\SalesService($this->connection, $attributes);
     }
@@ -78,5 +78,9 @@ class Simplicate
         return new Entities\Service($this->connection, $attributes);
     }
 
+    public function timelineMessage($attributes = [])
+    {
+        return new Entities\TimelineMessage($this->connection, $attributes);
+    }
 
 }
