@@ -112,7 +112,7 @@ abstract class Entity
      *
      * @param array $attributes
      */
-    protected function fill(array $attributes)
+    public function fill(array $attributes)
     {
         foreach ($attributes as $key => $value) {
             $this->setAttribute($key, $value);
