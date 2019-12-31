@@ -53,6 +53,11 @@ class Simplicate
         return new Entities\Organization($this->connection, $attributes);
     }
 
+    public function payment($attributes = [])
+    {
+        return new Entities\Payment($this->connection, $attributes);
+    }
+
     public function person($attributes = [])
     {
         return new Entities\Person($this->connection, $attributes);
