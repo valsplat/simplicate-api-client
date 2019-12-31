@@ -11,7 +11,7 @@ class Payment extends Entity
     use Actions\Getable;
     use Actions\Listable;
     use Actions\Storable;
-    use Actions\Deletable;
+    // use Actions\Deletable;
 
     protected $fillable = [
         'invoice_id', //string
