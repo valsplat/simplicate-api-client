@@ -40,6 +40,7 @@ class Service extends Entity
         'invoice_method', // ['Hours','Subscription','FixedFee']
         'amount',
         'price',
+        //'budget',
         'track_hours',
         'track_cost'
     ];

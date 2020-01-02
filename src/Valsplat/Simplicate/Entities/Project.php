@@ -11,6 +11,7 @@ class Project extends Entity
     use Actions\Listable;
     use Actions\Storable;
     use Actions\Deletable;
+    use Actions\CustomFields;
 
     protected $fillable = [
         'id',
