@@ -37,7 +37,7 @@ class Sales extends Entity
         'custom_fields',
         'note',
         'chance_to_score',
-        'lost_to_competitor'
+        // 'lost_to_competitor' // disabled for now, because api returns error when set.
     ];
 
     protected $endpoint = 'sales/sales/';
