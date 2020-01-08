@@ -259,6 +259,16 @@ abstract class Entity
     }
 
     /**
+     * Array representation of Entity
+     * @return array
+     * @author Joris
+     */
+    public function toArray()
+    {
+        return $this->attributes;
+    }
+
+    /**
      * String representation of Entity
      *
      * @return string fe. Entities\Project[id=1234]
