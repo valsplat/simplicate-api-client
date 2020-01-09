@@ -2,7 +2,7 @@
 
 namespace Valsplat\Simplicate;
 
-use Valsplat\Simplicate\Entities;
+use Entities;
 
 class Simplicate
 {
@@ -11,6 +11,19 @@ class Simplicate
     public function __construct(Connection $connection)
     {
         $this->connection = $connection;
+    }
+
+    /**
+     *
+     */
+    public function get($id)
+    {
+        $entityType = strtok($id,':');
+        if (method_exists($this, $entityType)) {
+            return $this->$entityType()->get($id);
+        } else {
+            throw new Exceptions\MethodNotSupportedException(sprintf('Entity %s not supported', $entityType));
+        }
     }
 
     public function contactperson($attributes = [])
