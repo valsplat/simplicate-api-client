@@ -2,8 +2,6 @@
 
 namespace Valsplat\Simplicate;
 
-use Entities;
-
 class Simplicate
 {
     protected $connection;
@@ -16,7 +14,7 @@ class Simplicate
     /**
      *
      */
-    public function get($id)
+    public function get($id = '')
     {
         $entityType = strtok($id,':');
         if (method_exists($this, $entityType)) {
