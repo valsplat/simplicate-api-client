@@ -79,6 +79,11 @@ class Simplicate
         return new Entities\Project($this->connection, $attributes);
     }
 
+    public function revenuegroup($attributes = [])
+    {
+        return new Entities\RevenueGroup($this->connection, $attributes);
+    }
+
     public function sales($attributes = [])
     {
         return new Entities\Sales($this->connection, $attributes);
@@ -97,6 +102,11 @@ class Simplicate
     public function timelineMessage($attributes = [])
     {
         return new Entities\TimelineMessage($this->connection, $attributes);
+    }
+
+    public function vatclass($attributes = [])
+    {
+        return new Entities\VatClass($this->connection, $attributes);
     }
 
 }

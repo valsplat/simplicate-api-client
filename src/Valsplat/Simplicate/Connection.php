@@ -53,7 +53,7 @@ class Connection
      * @var int
      */
     private $maxResultsPerRequest = 100;
-    private $maxConcurrentRequests = 40;
+    private $maxConcurrentRequests = 10;
 
     /**
      * @return Client
