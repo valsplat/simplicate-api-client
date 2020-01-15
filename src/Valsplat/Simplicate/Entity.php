@@ -100,7 +100,13 @@ abstract class Entity
 
         if (isset($out['custom_fields'])) {
             $out['custom_fields'] = array_filter($out['custom_fields'], function ($customField) {
-                return isset($customField['value']);
+                if (!isset($customField['value'])) {
+                    return false;
+                }
+                if ($customField['render_type'] == 'related_employee') {
+                    return false; // We cannot set related_employee type via API because of a bug
+                }
+                return true;
             });
             sort($out['custom_fields']);
         }
