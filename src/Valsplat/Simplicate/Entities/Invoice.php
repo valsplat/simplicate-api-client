@@ -43,17 +43,13 @@ class Invoice extends Entity
      * Use date and payment term to generate duedate
      * @return DateTime
      */
-    public function dueDate() {
-
+    public function dueDate()
+    {
         if (isset($this->payment_term) && isset($this->date)) {
-
             $date = new \DateTime($this->date);
             $paymentTermDays = $this->payment_term['days'];
-
-            $dueDate = $date->modify(sprint('+%d days', $paymentTermDays));
-            return $dueDate;
+            return $date->modify(sprintf('+%d days', $paymentTermDays));
         }
-
     }
 
 }
