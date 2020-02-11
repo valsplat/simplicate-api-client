@@ -59,6 +59,11 @@ class Simplicate
         return new Entities\Leave($this->connection, $attributes);
     }
 
+    public function mileage($attributes = [])
+    {
+        return new Entities\Mileage($this->connection, $attributes);
+    }
+
     public function myorganizationprofile($attributes = [])
     {
         return new Entities\MyOrganizationProfile($this->connection, $attributes);
